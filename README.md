@@ -1,6 +1,9 @@
 # Vim Primer
 
-Learning Vim with Lovejoy.
+Learning Vim with Lovejoy! I wrote this for my co-workers, so the *Getting
+Started* section makes some assumptions about the environment. Everything in
+here applies to any copy of Vim 7.2+, with the exception of navigating files,
+which uses the [NERDTree](http://github.com/scrooloose/nerdtree) plugin.
 
 ## Getting Started
 
@@ -41,9 +44,12 @@ sensitive, so when I list a command as `I`, that's `shift+i`.
 - `/` to search using RegExp
   - after enterying your search, type `n` for the next match, and `N` for the
     previous match.
-  - whatever edit you last made (e.g. deleting five characters in front of your
-    cursor, or inserting "pre_" in front of your cursor), you can do it again
-    by typing `.` in normal mode.
+  - Type `.` to do again whatever your last action was (e.g. deleting five
+    characters in front of your cursor, or inserting "pre_" in front of your
+    cursor).
+  - Use `:set ignorecase` or `:set ic`, and `:set noignorecase` or `:set noic`
+    to choose whether your searches are case-sensitive. This also applies to
+    substitutions.
 - go to line 5 with `:5`. Toggle line number display with `:set number` and
   `:set nonumber`.
 - `gg` to go to the top of the file, `G` to go to the bottom.
@@ -62,6 +68,12 @@ your cursor sits. You can make a selection with `V`, and then `:` will insert
 `'<,'>` before your command. This defines the scope of the command as
 everything in your selection.
 
+Here are some flags (the characters at the end of your RegExp) to remember
+
+- `g` - match multiple instances on each line
+- `c` - ask for confirmation for each substitution (allows you to skip some)
+- `e` - suppress errors (useful for batching across files)...
+
 You can also substitute across multiple files. You can't undo this from within
 Vim, so be sure that your files are versioned, or that you don't care what
 happens to them. To start, either open vim with an argument list like
@@ -69,7 +81,7 @@ happens to them. To start, either open vim with an argument list like
 with `:args *.js`.
 
 The magic happens with `:argdo`. To substitute across all the files you listed
-in the arguments, do `:argdo %s/foo/bar/g | update`. That last bit is
+in the arguments, do `:argdo %s/foo/bar/ge | update`. That last bit is
 important. ` | update` writes the file if anything has changed, so that Vim can
 continue to the next file in the list.
 
@@ -147,11 +159,14 @@ useful ways:
 - `:new filename.js` opens the file in a horizontal split. `:vnew filename.js`
   opens in a vertical split.
   - these same commands with a directory name (e.g. `.`) open the file browser.
-    In this installation, the browser is NerdTree. The basics apply to most of
+    In this installation, the browser is NERDTree. The basics apply to most of
     these: move up and down the tree, use the `<enter>` key to choose a file or
     directory.
-  - `control+w (h|j|k|l)` moves to the split to the (left|top|bottom|right) of
+  - `control+w (h|j|k|l)` moves to the window to the (left|top|bottom|right) of
     the current one.
-  - `control+w |` expands your current split to the full width of your terminal
-  - `control+w _` expands your current split to the full height of your terminal
-  - `control+w =` gives equal space to all your splits
+  - `control+w |` expands your current window to the full width of your
+    terminal
+  - `control+w _` expands your current window to the full height of your
+    terminal
+  - `control+w =` gives equal space to all your windows
+  - `control+w x` switches the current window with the next window
