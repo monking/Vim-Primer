@@ -167,6 +167,10 @@ Some other examples of what you might use this for:
 
 - select lines with `V`, and type `>` or `3>` to indent by 1 or three tab
   spaces.
+- You turn many lines into one, separated by spaces, by selecting the text and
+  typing `J`.
+- You can use `=` on a selection to indent according to syntax, as long as Vim
+  has a definition for the current file type.
 - select some text with `V`, then type `gq` to hard-wrap that text to 80
   character lines, taking indentation into account. Single newlines are treated
   as continuing text, and double newlines remain intact. This is useful for
