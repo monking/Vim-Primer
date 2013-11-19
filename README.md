@@ -2,8 +2,9 @@
 
 Learning Vim with Lovejoy! I wrote this for my co-workers, so the *Getting
 Started* section makes some assumptions about the environment. Everything in
-here applies to any copy of Vim 7.2+, with the exception of navigating files,
-which uses the [NERDTree](http://github.com/scrooloose/nerdtree) plugin.
+here applies to any copy of Vim 7.2+, with the exception of a couple plugins,
+such as [NERDTree](http://github.com/scrooloose/nerdtree) and
+[Surround](http://github.com/tpope/vim-surround).
 
 ## Getting Started
 
@@ -41,6 +42,8 @@ to know about.
 If you are already acquainted with the basics, I'll just share some of the
 features that I use most often. One thing to note: Vim commands are case-
 sensitive, so when I list a command as `I`, that's `shift+i`.
+
+## Useful Commands
 
 ### navigating quickly
 
@@ -215,3 +218,10 @@ point that I will emphasize, though I seldom use it, except when starting a new
 HTML file, is inserting surrounds while in Insert Mode by using `control+s<div
 class="nice">` or `control+s control+s<html>`. Once for surrounding inline, and
 twice for surrounding in a block.
+
+## So, this was *kinda* useful...
+
+I recognize this may not be the best way to learn Vim commands. Practice is
+best, and `vimtutor` gives a good sandbox for that. I hope to update this
+primer to be more practical, with most of the info shared in context of
+relevant code.
