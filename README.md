@@ -198,7 +198,7 @@ useful ways:
 - `:new filename.js` opens the file in a horizontal split. `:vnew filename.js`
   opens in a vertical split.
   - these same commands with a directory name (e.g. `.`) open the file browser.
-    In this installation, the browser is NERDTree. The basics apply to most of
+    In this installation, the browser is [NERDTree](http://github.com/scrooloose/nerdtree). The basics apply to most of
     these: move up and down the tree, use the `<enter>` key to choose a file or
     directory.
   - `control+w (h|j|k|l)` moves to the window to the (left|top|bottom|right) of
