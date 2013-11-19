@@ -45,16 +45,12 @@ sensitive, so when I list a command as `I`, that's `shift+i`.
 ### navigating quickly
 
 - `/` to search using RegExp
-  - you can also search for other instances of the word under your cursor with
-    `*`.
-  - after enterying your search, type `n` for the next match, and `N` for the
-    previous match.
-  - Type `.` to do again whatever your last action was (e.g. deleting five
-    characters in front of your cursor, or inserting "pre_" in front of your
-    cursor).
-  - Use `:set ignorecase` or `:set ic`, and `:set noignorecase` or `:set noic`
-    to choose whether your searches are case-sensitive. This also applies to
-    substitutions.
+  - Use `*` to search for other instances of the word under your cursor.
+  - While searching, type `n` for the next match and `N` for the previous
+    match.
+  - Use `:set ic` and `:set noic` to toggle ignoring case in your searches
+    (long names are `ignorecase` and `noignorecase`).
+    This also applies to substitutions.
 - go to line 5 with `:5`. Toggle line number display with `:set number` and
   `:set nonumber`.
 - `gg` to go to the top of the file, `G` to go to the bottom.
@@ -90,15 +86,53 @@ in the arguments, do `:argdo %s/foo/bar/ge | update`. That last bit is
 important. ` | update` writes the file if anything has changed, so that Vim can
 continue to the next file in the list.
 
-### block selection
+### setting options
 
-`control+v` lets you select a block.
+Many options can be set with the `:set` command. Most options have long and
+short names. It's useful to know both, since the short commands are usually
+acronyms, and can be difficult to remember if you don't know what they stand
+for.
+
+It's important to keep your whitespace and indentation uniform. Here are the
+options to control indentation:
+
+- `:set ts=2` or `:set tabstop=2` - how many columns a tab character covers
+- `:set sw=2` or `:set shiftwidth=2` - how many columns are inserted when
+  you hit the "tab" key.
+- `:set et` or `:set expandtab` - use only space characters when indenting
+- `:set noet` or `:set noexpandtab` - use tab characters for indenting, and
+  spaces for the remainder of the "tabstop" value.
+
+Our team is using two-space soft tabs, which would be `:set ts=2 sw=2 et`.
+
+### repetitive tasks
+
+Type `.` to repeat your last action from the current cursor position. This is
+useful in conjunction with a search and `n`, `N`.
+
+If you need to enter the same text on several lines, you should use a block
+selection. `control+v` lets you select a block.
 
 - `I` lets you type something to insert at the beginning of that block on
   each line. `A` does the same thing, but appends at the right edge of the
   block.
 - `y` will 'yank', as usual, but when you `p`ut, it will insert as a column,
   offsetting the text below your cursor.
+
+Literally any command within Vim can be recorded and repeated as a macro. Each
+macro is named with an alphanumeric character, so to set the `a` macro, type
+`qa` in Normal Mode, do your action, then, type `q` again in Normal Mode. You
+can run the macro now with `@a`. To run the same macro again, use `@@`.
+
+Here's a good example of the power of macros: I have two files open, a plain
+text list of names and an XML document with empty tags. I can begin recording
+my macro in the first file, copy the name (really, the first character to the
+last `0v$y`), switch to the XML file, find the next empty block and paste in
+the name with `p`. I then switch back to the first document and make sure that
+my cursor is in effectively the same position relative to my next name as it
+was in the first place, then type `q` to end recording. Now I have a repetitive
+action recorded, and I can just run the macro again and again and it will
+populate all the names.
 
 ### external commands
 
@@ -125,14 +159,6 @@ Some other examples of what you might use this for:
 
 - select lines with `V`, and type `>` or `3>` to indent by 1 or three tab
   spaces.
-	- Indenting can be confusing. Vim lets you define your tab behavior with some
-	  detail. My usual default is `:set ts=2 sw=2 et`
-    - `:set ts=2` or `:set tabstop=2` - how many columns a tab character covers
-    - `:set sw=2` or `:set shiftwidth=2` - how many columns are inserted when
-      you hit the "tab" key.
-    - `:set et` or `:set expandtab` - use only space characters when indenting
-		- `:set noet` or `:set noexpandtab` - use tab characters for indenting, and
-		  spaces for the remainder of the "tabstop" value.
 - select some text with `V`, then type `gq` to hard-wrap that text to 80
   character lines, taking indentation into account. Single newlines are treated
   as continuing text, and double newlines remain intact. This is useful for
