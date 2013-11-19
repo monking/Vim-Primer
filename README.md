@@ -15,12 +15,15 @@ used to it:
 - to change to window 1, use `control+a 1`
   - ...unless you're in tmux on your local machine as well, in which case
     you'll use your local prefix first; if that's `control+a`, then use
-    `control+a control+a 1`)
-- to switch panes (splits within a window), use `control+a+(h|j|k|l)`
-  - left:  "h"
-  - down:  "j"
-  - up:    "k"
-  - right: "l"
+    `control+a control+a 1`). When there are two commands in a row that use the
+    same modifier key (e.g. `control`), you can just hold that key down (you
+    might read this command as "hold `control` and type `a a`, then release
+    `control` and type `1`").
+- to switch panes (splits within a window), use `control+a control+(h|j|k|l)`.
+  - left:  `h`
+  - down:  `j`
+  - up:    `k`
+  - right: `l`
 - to detach tmux: `control+a d`
   - Please detach tmux before you log off the server with `control+d`. If you
     use `control+d` inside tmux, you'll close that window, which is not very
@@ -42,6 +45,8 @@ sensitive, so when I list a command as `I`, that's `shift+i`.
 ### navigating quickly
 
 - `/` to search using RegExp
+  - you can also search for other instances of the word under your cursor with
+    `*`.
   - after enterying your search, type `n` for the next match, and `N` for the
     previous match.
   - Type `.` to do again whatever your last action was (e.g. deleting five
@@ -170,3 +175,12 @@ useful ways:
     terminal
   - `control+w =` gives equal space to all your windows
   - `control+w x` switches the current window with the next window
+
+### surround plugin
+
+I use the [Surround](http://github.com/tpope/vim-surround) plugin constantly.
+The [README](http://github.com/tpope/vim-surround) there is very useful. One
+point that I will emphasize, though I seldom use it, except when starting a new
+HTML file, is inserting surrounds while in Insert Mode by using `control+s<div
+class="nice">` or `control+s control+s<html>`. Once for surrounding inline, and
+twice for surrounding in a block.
