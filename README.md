@@ -44,6 +44,9 @@ sensitive, so when I list a command as `I`, that's `shift+i`.
 
 ### navigating quickly
 
+In Normal Mode, these commands will move your cursor around the file in
+meaningful ways.
+
 - `/` to search using RegExp
   - Use `*` to search for other instances of the word under your cursor.
   - While searching, type `n` for the next match and `N` for the previous
@@ -51,6 +54,8 @@ sensitive, so when I list a command as `I`, that's `shift+i`.
   - Use `:set ic` and `:set noic` to toggle ignoring case in your searches
     (long names are `ignorecase` and `noignorecase`).
     This also applies to substitutions.
+- go to the other end of a parenthetical by typing `%`. Useful for traversing
+  functions; bummer in CoffeeScript.
 - go to line 5 with `:5`. Toggle line number display with `:set number` and
   `:set nonumber`.
 - `gg` to go to the top of the file, `G` to go to the bottom.
