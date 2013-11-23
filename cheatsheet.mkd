@@ -1,0 +1,114 @@
+# Git Cheatsheet
+
+## Terms
+
+- **yank** = copy
+- **put** = paste
+- **register** = a place to store text, like a pasteboard
+  pasteboard. The default
+- `^` before a letter means holding the "control" key
+
+## Modes
+
+- **Normal Mode** the default, used for navigation
+  - `<esc>`
+- **Insert Mode** insert your typing relative to your cursor
+  - `i` before the cursor
+  - `a` after the cursor
+  - `I` at the beginning of the line (after indentation)
+  - `A` at the end of the line
+
+## Normal Mode
+
+### Navigation
+
+        ^
+        k
+    <h     l>
+        j
+        v
+
+- `0` beginning of the line
+- `$` end of the line
+- `/` find
+- `gg` top
+- `G` bottom
+- `^f` page down
+- `^f` page down
+- `*` find the next occurrence of the word under the cursor
+
+### Editing
+
+- `u` undo
+- `^r` redo
+- `r` replace one character
+- `dd` delete a whole line
+- `yy` "yank" a whole line
+- `yiw` yank the whole word under the cursor
+- `ye` yank from the cursor to the end of a word
+- `p` put after your cursor
+- `P` put before your cursor
+- `.` "do that again"
+- `J` join the next two lines with a space
+
+### Commands
+
+- `:w` to save
+- `:q` to quit
+- `:e` to open
+- `:new` to open in a new horizontal window
+- `:vnew` to open in a new vertical window
+- `:nohl` turns off highlighting, for when you're done searching
+- `:%s/one/two/g` replace "one" with "two" everywhere in the file
+- `:set wrap` and `:set nowrap` for soft wrapping
+- `:set number` and `:set nonumber` for line numbers
+
+## Visual Mode
+
+- `y` copy the selection
+- `x` cut the selection
+- `u` make lowercase
+- `U` make uppercase
+
+## Insert Mode
+
+# Regular Expressions
+
+Some characters that are not escaped in Perl Regular Expressions are escaped in
+Vim. Here are a few common ones:
+
+- `\(` and `\)` for making backreferences
+- `\+` for "one or more"
+- `\?` for "maybe"
+
+# Quirks
+
+Deleting something is the same as "cutting" it. That means that `dd`, `x`, and
+even inserting over a visual selection, put that range into  your register, and
+that will be the next thing to come out if you type `p` in Normal Mode.
+
+Vim shows you some info at the bottom of the window. Here it is from left to right:
+
+- file name (with `[+]` if you have unsaved changes, and `RO` if it's read only)
+- line number, column number
+- your position in the document
+
+# Plugins
+
+## Surround
+
+Each command is followed by the character or tag that you want to use to
+surround. Here are a few:
+
+- `)` parentheses (without spaces)
+- `(` parentheses (with spaces)
+- `}` parentheses (without spaces)
+- `{` parentheses (with spaces)
+
+### Normal Mode
+
+- `ysiw` surround the word under the cursor with the next character/tag you type
+
+### Visual Mode
+
+- `S` surround your selection
