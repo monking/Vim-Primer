@@ -6,6 +6,8 @@ here applies to any copy of Vim 7.2+, with the exception of a couple plugins,
 such as [NERDTree](http://github.com/scrooloose/nerdtree) and
 [Surround](http://github.com/tpope/vim-surround).
 
+### Just want a cheatsheet? [Here ya go](cheatsheet.mkd).
+
 ## Getting Started
 
 If you're not already in `tmux`, close this file and type `tmux attach`. This
