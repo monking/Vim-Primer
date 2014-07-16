@@ -217,7 +217,12 @@ relevant code.
 
 ## tmux
 
-- the command prefix is set to `control+a`
+If you're going to spend a lot of time in the terminal, I highly recommend
+`tmux`, the Terminal MUltipleXer, which lets you switch back and forth between
+processes. If you get used to it on your local environment, then you'll be just
+as much at home when you log in to a server.
+
+- the command prefix is `control+a`
 - to change to window 1, use `control+a 1`
   - ...unless you're in tmux on your local machine as well, in which case
     you'll use your local prefix first; if that's `control+a`, then use
@@ -234,3 +239,37 @@ relevant code.
   - Please detach tmux before you log off the server with `control+d`. If you
     use `control+d` inside tmux, you'll close that window, which is not very
     nice to the rest of us.
+
+Here is a sample `.tmux.config` file which will enable the vim-like controls
+listed above. It's borrowed in part from [Maximum
+Awesome](https://github.com/square/maximum-awesome), and you may want to just install that instead.
+
+``` conf
+# use C-a, since it's on the home row and easier to hit than C-b
+set-option -g prefix C-a
+unbind-key C-a
+bind-key C-a send-prefix
+
+# vi is good
+setw -g mode-keys vi
+
+# use vim-like keys for splits and windows
+bind-key v split-window -h
+bind-key s split-window -v
+
+bind-key c new-window
+
+bind-key [ copy-mode
+bind-key ] paste-buffer
+
+# Setup 'v' to begin selection as in Vim
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy r rectangle-toggle
+bind-key -t vi-copy y copy-selection
+
+# Add control + Vi-style directions to switch panes
+bind-key -r       C-k select-pane -U
+bind-key -r       C-j select-pane -D
+bind-key -r       C-h select-pane -L
+bind-key -r       C-l select-pane -R
+```
