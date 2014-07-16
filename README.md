@@ -6,33 +6,13 @@ here applies to any copy of Vim 7.2+, with the exception of a couple plugins,
 such as [NERDTree](http://github.com/scrooloose/nerdtree) and
 [Surround](http://github.com/tpope/vim-surround).
 
+If you want to work entirely in the terminal, I recommend `tmux` to keep
+multiple workspaces open at one time. At the end of this document are some
+suggestions regarding `tmux`.
+
 ### Just want a cheatsheet? [Here ya go](cheatsheet.mkd).
 
 ## Getting Started
-
-If you're not already in `tmux`, close this file and type `tmux attach`. This
-file should already be open. A couple notes about `tmux`, in case you're not
-used to it:
-
-- the command prefix is set to `control+a`
-- to change to window 1, use `control+a 1`
-  - ...unless you're in tmux on your local machine as well, in which case
-    you'll use your local prefix first; if that's `control+a`, then use
-    `control+a control+a 1`). When there are two commands in a row that use the
-    same modifier key (e.g. `control`), you can just hold that key down (you
-    might read this command as "hold `control` and type `a a`, then release
-    `control` and type `1`").
-- to switch panes (splits within a window), use `control+a control+(h|j|k|l)`.
-  - left:  `h`
-  - down:  `j`
-  - up:    `k`
-  - right: `l`
-- to detach tmux: `control+a d`
-  - Please detach tmux before you log off the server with `control+d`. If you
-    use `control+d` inside tmux, you'll close that window, which is not very
-    nice to the rest of us.
-
-Okay! Enough about tmux. Let's start using Vim.
 
 Vim ships with a built-in tutor: a text file designed to be messed with, which
 walks you through the core functionality in 30 minutes. If you want to start
@@ -117,6 +97,7 @@ Our team is using two-space soft tabs, which would be `:set ts=2 sw=2 et`.
 
 ### repetitive tasks
 
+#### repeat with `.`
 Type `.` to repeat your last action from the current cursor position. This is
 useful in conjunction with a search and `n`, `N`.
 
@@ -129,20 +110,22 @@ selection. `control+v` lets you select a block.
 - `y` will 'yank', as usual, but when you `p`ut, it will insert as a column,
   offsetting the text below your cursor.
 
-Literally any command within Vim can be recorded and repeated as a macro. Each
-macro is named with an alphanumeric character, so to set the `a` macro, type
-`qa` in Normal Mode, do your action, then, type `q` again in Normal Mode. You
-can run the macro now with `@a`. To run the same macro again, use `@@`.
+#### macros
+
+Literally any command within Vim can be recorded and repeated as a macro. To
+start recording a macro, type `q` in Normal Mode, then choose a letter to
+assign to it.  Do your action, then, type `q` again in Normal Mode. You can run
+the macro now with `@a`. To run the same macro again, use `@@`.
 
 Here's a good example of the power of macros: I have two files open, a plain
 text list of names and an XML document with empty tags. I can begin recording
 my macro in the first file, copy the name (really, the first character to the
 last `0v$y`), switch to the XML file, find the next empty block and paste in
 the name with `p`. I then switch back to the first document and make sure that
-my cursor is in effectively the same position relative to my next name as it
-was in the first place, then type `q` to end recording. Now I have a repetitive
-action recorded, and I can just run the macro again and again and it will
-populate all the names.
+my cursor is in a similar place relative to the next line as it was to my first
+line, then type `q` to end recording. Now I have a repetitive action recorded,
+and I can just run the macro again and again and it will populate all the
+names.
 
 ### external commands
 
@@ -231,3 +214,23 @@ I recognize this may not be the best way to learn Vim commands. Practice is
 best, and `vimtutor` gives a good sandbox for that. I hope to update this
 primer to be more practical, with most of the info shared in context of
 relevant code.
+
+## tmux
+
+- the command prefix is set to `control+a`
+- to change to window 1, use `control+a 1`
+  - ...unless you're in tmux on your local machine as well, in which case
+    you'll use your local prefix first; if that's `control+a`, then use
+    `control+a control+a 1`). When there are two commands in a row that use the
+    same modifier key (e.g. `control`), you can just hold that key down (you
+    might read this command as "hold `control` and type `a a`, then release
+    `control` and type `1`").
+- to switch panes (splits within a window), use `control+a control+(h|j|k|l)`.
+  - left:  `h`
+  - down:  `j`
+  - up:    `k`
+  - right: `l`
+- to detach tmux: `control+a d`
+  - Please detach tmux before you log off the server with `control+d`. If you
+    use `control+d` inside tmux, you'll close that window, which is not very
+    nice to the rest of us.
